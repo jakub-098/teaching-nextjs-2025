@@ -1,6 +1,38 @@
+import { DB } from "@/lib/db-types";
+import { Kysely, SqliteDialect } from "kysely";
 import Image from "next/image";
+import SQLite from "better-sqlite3";
 
-export default function Home() {
+
+export default async function Home() {
+
+  const dialect = new SqliteDialect({
+    database: new SQLite("db.sqlite"),
+  });
+
+  const db = new Kysely<DB>({ dialect });
+
+  const albums = await db.selectFrom("albums").select(["albums.id","albums.name","albums.release_date"]).execute();
+
+  const resoults = await db
+    .selectFrom("albums")
+    .innerJoin("authors", "albums.author_id", "authors.id")
+    .select(["albums.id", "albums.name", "authors.name as author_name"])
+    .execute();
+    //kajove
+  // const albums = await db
+  //       .selectFrom("albums")
+  //       .innerJoin("authors", "authors.id", "author_id")
+  //       .select([
+  //           "albums.id",
+  //           "albums.name",
+  //           "albums.release_date",
+  //           "authors.name as author_id",
+  //       ])
+  //       .execute();  
+  console.log(resoults);
+  console.log(albums[0]);
+
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -65,6 +97,33 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+
+        <div className="block gap-4 flex-wrap">
+          {resoults.map((resoult) => (
+            <div key={resoults.id}>
+              {resoult.name} {resoult.author_name}
+            </div>
+          ))}
+        </div>
+        <div>
+                    {albums.map((album) => (
+                        <div
+                            key={album.id}
+                        >
+                            <h2>
+                                {album.author_id}
+                            </h2>
+                            <h3>
+                                {album.name}
+                            </h3>
+                            <span>
+                                {new Date(album.release_date).toDateString()}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+ 
+        
       </footer>
     </div>
   );
