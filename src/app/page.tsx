@@ -2,6 +2,7 @@ import { DB } from "@/lib/db-types";
 import { Kysely, SqliteDialect } from "kysely";
 import Image from "next/image";
 import SQLite from "better-sqlite3";
+import Link from "next/link";
 
 
 export default async function Home() {
@@ -42,14 +43,31 @@ export default async function Home() {
             alt="Spotify icon"
             width={100}
             height={100}
+            className="m-auto"
           />
-        <h1 className="text-4xl font-bold text-center sm:text-left">
+        <h1 className="text-4xl font-bold text-center sm:text-left m-auto">
           Welcome to Spotify!
         </h1>
-        <p className="max-w-[480px] text-center text-lg text-zinc-700 sm:text-left">
-          This is a simple Spotify clone built with Next.js and Tailwind CSS.
-          Explore the features and enjoy the music experience!
-        </p>
+       
+
+        
+
+        <div className="grid grid-cols-6 gap-12">
+ 
+          {albums.map((album) => (
+            <div key={album.id} className="bg-green-1000 p-8 rounded-md font-semibold font-mono">
+              <p>ID: {album.id}</p>
+              
+              <p></p>
+              {album.name}: {new Date(album.release_date).toDateString()}
+              <Link className="btn btn-primary btn-block" href={`/album/${album.id}`}>details</Link>
+            </div>
+            ))}
+ 
+        </div>
+ 
+ 
+        
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
@@ -97,33 +115,6 @@ export default async function Home() {
           />
           Go to nextjs.org →
         </a>
-
-        <div className="block gap-4 flex-wrap">
-          {resoults.map((resoult) => (
-            <div key={resoults.id}>
-              {resoult.name} {resoult.author_name}
-            </div>
-          ))}
-        </div>
-        <div>
-                    {albums.map((album) => (
-                        <div
-                            key={album.id}
-                        >
-                            <h2>
-                                {album.author_id}
-                            </h2>
-                            <h3>
-                                {album.name}
-                            </h3>
-                            <span>
-                                {new Date(album.release_date).toDateString()}
-                            </span>
-                        </div>
-                    ))}
-                </div>
- 
-        
       </footer>
     </div>
   );
