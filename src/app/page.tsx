@@ -4,9 +4,12 @@ import Image from "next/image";
 import SQLite from "better-sqlite3";
 import Link from "next/link";
 
-
-export default async function Home() {
-
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  
   const dialect = new SqliteDialect({
     database: new SQLite("db.sqlite"),
   });

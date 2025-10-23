@@ -1,4 +1,4 @@
-import { getDb } from "@/lib/db";
+
 import { DB } from "@/lib/db-types";
 import Link from 'next/link'
 import { Kysely, SelectAllNode, SqliteDialect } from "kysely";
