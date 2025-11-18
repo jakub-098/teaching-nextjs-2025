@@ -5,7 +5,8 @@ import SQLite from "better-sqlite3";
 import Link from "next/link";
 import { tr } from "@faker-js/faker";
 import { table } from "console";
-
+import { RemovePlaylistSong } from "./RemovePlaylistSong";
+import { RemovePlaylist } from "./RemovePlaylist";
 export default async function PlaylistDetail({
   params,
 }: {
@@ -44,11 +45,12 @@ export default async function PlaylistDetail({
         <h1 className="text-white text-3xl font-bold m-auto">{name}</h1>
         
         <table className="table">
-          
+
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Title</th>
+                <th><RemovePlaylist playlistId={Number(id)} songId={0}/></th>
               </tr>
             </thead>
 
@@ -57,6 +59,10 @@ export default async function PlaylistDetail({
                 <tr key={result.id}>
                   <td>{i + 1}</td>
                   <td>{result.name}</td>
+                  <RemovePlaylistSong
+                      playlistId={Number(id)}
+                      songId={result.id}
+                    />
                 
                 </tr>
                ))}

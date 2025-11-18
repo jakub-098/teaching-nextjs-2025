@@ -5,6 +5,7 @@ import SQLite from "better-sqlite3";
 import Link from "next/link";
 import { tr } from "@faker-js/faker";
 import { table } from "console";
+import { AddToPlaylistButton } from './AddSongToPlaylist';
 
 export default async function AlbumDetailPage({
   params,
@@ -41,8 +42,11 @@ const { id } = await params;
   const seconds = duration % 60;
 
   return `${minutes}` + ":" + `${seconds}`.padStart(2, "0");
-  }
 
+  
+  }
+  const playlists = await db.selectFrom('playlists').where('user_id', '=', 1).selectAll().execute();
+  
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -56,7 +60,9 @@ const { id } = await params;
               <th>ID: {song.id}</th>
               <th>Name: {song.name}</th>
               <th>Duration: {formatDuration(song.duration)}</th>
-              
+              <th>
+									<AddToPlaylistButton songId={song.id} playlists={playlists} />
+							</th>
 
               
             </tr>
