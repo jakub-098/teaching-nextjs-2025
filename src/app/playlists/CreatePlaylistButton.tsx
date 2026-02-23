@@ -36,7 +36,7 @@ export function CreatePlaylistButton() {
               >
                 Cancel
               </button>
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-blue" type="submit">
                 Create
               </button>
             </div>

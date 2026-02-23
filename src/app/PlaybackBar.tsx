@@ -200,7 +200,7 @@ export function PlaybackBar(props: {
   const currentRemaining = duration - currentProgress;
 
   return (
-    <div className="flex items-center justify-between h-full pl-16 pr-4">
+    <div className="flex items-center justify-between h-full pl-16 pr-4 playback-bar bg-gray-800">
       <div className="flex items-center gap-3 w-48 min-w-48">
         {currentSong ? (
           <div className="flex flex-col min-w-0">
@@ -230,7 +230,7 @@ export function PlaybackBar(props: {
           </button>
 
           <button
-            className="btn btn-circle btn-primary"
+            className="btn btn-circle btn-blue" /* Changed from btn-primary to btn-blue */
             onClick={togglePlayback}
           >
             {isPlaying ? (

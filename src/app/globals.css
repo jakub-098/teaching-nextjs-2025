@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 :root {
-  --background: #ffffff;
+  --background: #000000; /* Set background to full black */
   --foreground: #171717;
 }
 
@@ -15,7 +15,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #000000; /* Ensure dark mode also uses full black */
     --foreground: #ededed;
   }
 }

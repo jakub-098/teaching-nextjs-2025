@@ -22,7 +22,7 @@ export default async function Home() {
         <p className="text-4xl font-bold">Spotify</p>
         <div className="grid grid-cols-2 gap-4">
           {albums.map((album) => (
-            <div key={album.id} className="card w-64 bg-base-100 shadow-sm">
+            <div key={album.id} className="card w-64 bg-gray-800 shadow-sm">
               <div className="card-body">
                 <span className="badge badge-xs badge-warning">Pop</span>
                 <h2 className="text-3xl font-bold">{album.name}</h2>
@@ -39,7 +39,7 @@ export default async function Home() {
                 </p>
                 <div className="mt-6">
                   <Link
-                    className="btn btn-primary btn-block"
+                    className="btn btn-blue btn-block"
                     href={`/album/${album.id}`}
                   >
                     Detail
@@ -50,7 +50,7 @@ export default async function Home() {
           ))}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center bg-gray-900">
         <p>Footer</p>
       </footer>
     </div>

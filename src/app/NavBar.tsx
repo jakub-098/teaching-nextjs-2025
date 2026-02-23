@@ -13,7 +13,7 @@ export function NavBar() {
   const searchLinkQuery = searchInput !== "" ? { q: searchInput } : {};
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-gray-900 shadow-sm"> {/* Changed to a darker background */}
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost text-xl">
           Spotify

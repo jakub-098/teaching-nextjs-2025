@@ -47,7 +47,7 @@ export function EditPlaylistButton(props: {
               >
                 Cancel
               </button>
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-blue" type="submit">
                 Update
               </button>
             </div>
